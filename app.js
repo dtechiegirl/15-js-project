@@ -1,27 +1,30 @@
-//initial count
+'use strict'
 
-let count = 0;
-const value = document.querySelector("#value");
-let btns = document.querySelectorAll(".btn");
+const colors = [
+  "green",
+  "red",
+  "rgba(133,122,200)",
+  "#f15025",
+  "hotpink",
+  "aqua",
+  "grey",
+  "coral",
+  "tomato",
+];
 
-btns.forEach(function (btn) {
-  btn.addEventListener("click", function (e) {
-    const styles = e.currentTarget.classList;
-    if (styles.contains("decrease")) {
-      count--;
-    } else if (styles.contains("increase")) {
-      count++;
-    } else {
-      count === 0;
-    }
+const btn = document.getElementById("btn");
 
-    if (count > 0) {
-      value.style.color = "green";
-    } else if (count < 0) {
-      value.style.color = "red";
-    } else if (count === 0) {
-      value.style.color = "#222";
-    }
-    value.textContent = count;
-  });
+const color = document.querySelector(".color");
+
+btn.addEventListener("click", function () {
+  const randomNo = getRandomNo();
+  // console.log(randomNo)
+
+  document.body.style.backgroundColor = colors[randomNo];
+
+  color.textContent = colors[randomNo];
 });
+
+function getRandomNo() {
+  return Math.trunc(Math.random() * colors.length);
+}
